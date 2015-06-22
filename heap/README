@@ -1,0 +1,10 @@
+Try
+
+  $ make
+  $ make run
+
+The interface used in both cases is that the heap data is piped into the
+program. The Makefile assumes just that the data is in data.txt. So the
+Makefile just does this for a sequential-heap:
+
+  $ cat data.txt | ./sequential-heap

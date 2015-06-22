@@ -1,0 +1,29 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{clrscode3e}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\lhead{}%
+\chead{}%
+\rhead{}%
+\cfoot{Page~\thepage~of~\pageref{LastPage}}%
+\renewcommand{\headrulewidth}{0in}%
+
+\fancypagestyle{first}
+{
+  \fancyhf{}%
+  \rhead{}%
+}{}
+
+\begin{document}
+
+\input{heap-insert}
+
+\label{LastPage}
+
+\end{document}

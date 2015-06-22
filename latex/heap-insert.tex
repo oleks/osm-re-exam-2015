@@ -1,0 +1,54 @@
+\begin{figure}[htbp!]
+\begin{codebox}
+\Procname{$\proc{Insert}(H, \mathit{value})$}
+\li $N \gets \proc{New-Node}(\mathit{value}, \const{nil}, \const{nil})$ \Comment no left or
+right child (yet)
+\li $H.n \gets H.n + 1$
+\li $\proc{Insert-on-Path}(H, N, H.n)$
+\End
+\end{codebox}
+\begin{codebox}
+\Procname{$\proc{Insert-on-Path}(H, N, path)$}
+\li $parent \gets \const{nil}$
+\li $current \gets H.root$
+\li \While $current \neq \const{nil} \kw{ and } current.\mathit{value} \geq N.\mathit{value}$ \Do
+\li   $path \gets \proc{Advance-One-Bit}(path)$
+\li   $parent \gets current$
+\zi   \Comment advance to left or right child, depending on the bit on the path
+\li   $current \gets \proc{Get-Next-Child}(current, path)$
+\End
+\zi \Comment $current$ points to first node on path such that $current.\mathit{value} <
+N.\mathit{value}$, if anything
+\li \If $parent = \const{nil}$ \Then
+\li   $H.root \gets N$
+\li \Else
+\li   $\proc{Set-Next-Child}(parent, path, N)$
+\End
+\zi \Comment subtree starting at $current$ is now outside $H$, so merge it back
+in!
+\li $\proc{Merge-on-Path}(current, N, path)$
+\end{codebox}
+\begin{codebox}
+\Procname{$\proc{Merge-on-Path}(out,in,path)$}
+\li \While $out \neq \const{nil}$ \Do
+\li   $path \gets \proc{Advance-One-Bit}(path)$
+\li   \If $\proc{Next-Is-Left}(path)$ \Then
+\zi     \Comment copy the right child, advance on left
+\li     $in.\mathit{right} \gets out.\mathit{right}$
+\li     $in.\mathit{left} \gets out$
+\li     $in \gets out$
+\li     $out \gets out.\mathit{left}$
+\li   \Else
+\zi     \Comment copy the left child, advance on right
+\li     $in.\mathit{left} \gets out.\mathit{left}$
+\li     $in.\mathit{right} \gets out$
+\li     $in \gets out$
+\li     $out \gets out.\mathit{right}$
+\End
+\End
+\li $in.\mathit{left} \gets \const{nil}$
+\li $in.\mathit{right} \gets \const{nil}$
+\end{codebox}
+\caption[]{Pseudo-code for an insertion into an awesome heap.}
+\label{code:insert}
+\end{figure}

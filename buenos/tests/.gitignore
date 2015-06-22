@@ -1,0 +1,16 @@
+/halt
+/exec
+/exec_child1
+/exec_child2
+/hw
+/calc
+/readwrite
+/sem_barrier
+/sem_barrier_p0
+/sem_barrier_p1
+/minimalloc
+/muchmalloc
+/tlb_exception
+/io
+/fork
+/forkbomb

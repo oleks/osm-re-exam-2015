@@ -1,0 +1,6 @@
+*.dvi
+*.idx
+*.ilg
+*.ind
+/color.ps
+/roadmap.ps
